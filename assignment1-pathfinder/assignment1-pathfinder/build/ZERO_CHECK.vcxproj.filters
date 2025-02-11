@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\B00804233\OneDrive - University of the West of Scotland\3rd year\AI Programming for Games\assignment1-pathfinder\assignment1-pathfinder\build\CMakeFiles\eb163e435765570ea75cd071b5c25968\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{0F30A14A-43C1-3301-94C4-88318DCE7DFE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
