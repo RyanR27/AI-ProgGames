@@ -8,6 +8,10 @@
 #include <string>
 #include <unordered_map>
 
+//task 1 
+#include "raylib.h"
+
+
 std::vector<node_t> astar_pathfind(const Graph& g, node_t start, node_t goal)
 {
   std::unordered_map<node_t, node_t> came_from;
@@ -72,6 +76,12 @@ int main()
     ClearBackground(LIGHTGRAY);
 
     draw_graph(g);
+
+    //Task 1
+    DrawText(TextFormat("Score: %08i", score), 100, 80, 20, WHITE);
+    DrawText(TextFormat("Tokens: %08i", tokens), 100, 120, 20, WHITE);
+    DrawText(TextFormat("High Score: %08i", high_score), 100, 160, 20, WHITE);
+    DrawText(TextFormat("Time: %08i", t), 100, 200, 20, WHITE);
 
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
