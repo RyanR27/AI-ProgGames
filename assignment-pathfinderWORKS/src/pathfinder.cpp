@@ -8,9 +8,11 @@
 #include <string>
 #include <unordered_map>
 
-//task 1 
+//Task 1 
 #include "raylib.h"
 
+//Task 12
+//#include <windows.h>
 
 std::vector<node_t> astar_pathfind(const Graph& g, node_t start, node_t goal)
 {
@@ -63,7 +65,13 @@ int main()
   add_double_edge(g, 'C', 'G');
   add_double_edge(g, 'F', 'G');
 
+  //Task 12
   int t{60}; // time
+  /*for (t = 60; t >= 1; t - 1) {
+      std::cout << t;
+      sleep(60);
+  }*/
+
   std::vector<node_t> player_path{};
   node_t start = 'A';
   node_t end   = 'G';
@@ -78,10 +86,10 @@ int main()
     draw_graph(g);
 
     //Task 1
-    DrawText(TextFormat("Score: %08i", score), 100, 80, 20, WHITE);
-    DrawText(TextFormat("Tokens: %08i", tokens), 100, 120, 20, WHITE);
-    DrawText(TextFormat("High Score: %08i", high_score), 100, 160, 20, WHITE);
-    DrawText(TextFormat("Time: %08i", t), 100, 200, 20, WHITE);
+    DrawText(TextFormat("Score: %04i", score), 100, 80, 20, WHITE);
+    DrawText(TextFormat("Tokens: %04i", tokens), 100, 120, 20, WHITE);
+    DrawText(TextFormat("High Score: %04i", high_score), 100, 160, 20, WHITE);
+    DrawText(TextFormat("Timer(s): %02i", t), 100, 200, 20, WHITE);
 
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
