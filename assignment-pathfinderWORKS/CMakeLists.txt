@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.15)
 
 if (DEFINED ENV{VCPKG_ROOT})
   set(VCPKG_CMAKE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
