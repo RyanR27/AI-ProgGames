@@ -22,7 +22,6 @@ void PlayClickSound() {
     PlaySound(clickSound);
 }
 
-//Task 9 Mary 
 
 std::vector<node_t> astar_pathfind(const Graph& g, node_t start, node_t goal)
 {
@@ -50,7 +49,7 @@ unsigned int path_cost(const std::vector<node_t>& path)
 
 int main()
 {
-  //Task 4
+  //Task 4 Mary
   LoadSounds();
 
   const int w{ 2880/2 }, h{ 1620/2 }, half_w{ w/2 }, half_h{ h/2 }, gap{ w/8 };
@@ -160,7 +159,7 @@ int main()
                   player_path.push_back(*opt);
                   //tokens -= path_cost(player_path); *maybe use it later -- final node
                   
-                  //task 4
+                  //task 4 Mary
                   PlayClickSound();
 
                   break;
@@ -172,7 +171,7 @@ int main()
     EndDrawing();
   }
 
-  //Task 4
+  //Task 4 Mary
   UnloadSound(clickSound);
   CloseAudioDevice();
 
