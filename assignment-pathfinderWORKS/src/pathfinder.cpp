@@ -8,9 +8,19 @@
 #include <string>
 #include <unordered_map>
 
-//Task 1 Mary
-#include "raylib.h"
+//Task 1 Mary 
+#include "raylib.h" 
 
+//Task 4 Mary
+Sound clickSound;
+void LoadSounds(){
+    InitAudioDevice();
+    clickSound = LoadSound("../../deps/raylib-cpp/examples/audio/resources/coin.wav");
+}
+
+void PlayClickSound() {
+    PlaySound(clickSound);
+}
 
 std::vector<node_t> astar_pathfind(const Graph& g, node_t start, node_t goal)
 {
@@ -38,6 +48,9 @@ unsigned int path_cost(const std::vector<node_t>& path)
 
 int main()
 {
+  //Task 4
+  LoadSounds();
+
   const int w{ 2880/2 }, h{ 1620/2 }, half_w{ w/2 }, half_h{ h/2 }, gap{ w/8 };
   raylib::Window window{ w, h, "Pathfinder" };
 
@@ -63,12 +76,6 @@ int main()
   add_double_edge(g, 'C', 'G');
   add_double_edge(g, 'F', 'G');
 
-  //Task 12 Mary
-  /* int t{60};
-  for (t = 60; t >= 1; t - 1) {
-      std::cout << t;
-      sleep(60);
-  }*/
 
   float t{60}; // time from int to flaot William
 
@@ -81,6 +88,7 @@ int main()
   player_path.push_back(start); //Task 5 William
 
 
+
   while (!window.ShouldClose()) // Detect window close button or ESC key
   {
     BeginDrawing();
@@ -90,7 +98,8 @@ int main()
 
     ClearBackground(LIGHTGRAY);
 
-   
+
+
     //Task 5 William
     if (player_path.size() >= 2)
     {
@@ -131,6 +140,10 @@ int main()
                   tokens -= g.cost(player_path.back(), *opt);
                   player_path.push_back(*opt);
                   //tokens -= path_cost(player_path); *maybe use it later -- final node
+                  
+                  //task 4
+                  PlayClickSound();
+
                   break;
               }
           }
@@ -139,6 +152,10 @@ int main()
 
     EndDrawing();
   }
+
+  //Task 4
+  UnloadSound(clickSound);
+  CloseAudioDevice();
 
   return 0;
 }
