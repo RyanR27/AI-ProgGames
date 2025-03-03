@@ -22,7 +22,6 @@ void PlayClickSound() {
     PlaySound(clickSound);
 }
 
-
 std::vector<node_t> astar_pathfind(const Graph& g, node_t start, node_t goal)
 {
   std::unordered_map<node_t, node_t> came_from;
@@ -77,18 +76,14 @@ int main()
   add_double_edge(g, 'C', 'G');
   add_double_edge(g, 'F', 'G');
 
-
-  float t{60}; // time from int to flaot William
+  float t{60}; // time from int to float William
 
   std::vector<node_t> player_path{};
   node_t start = 'A';
   node_t end   = 'G';
   int tokens{2000}, score{}, high_score{}; // try with more/less tokens?
 
-  //std::vector<node_t> path;
   player_path.push_back(start); //Task 5 William
-
-
 
   while (!window.ShouldClose()) // Detect window close button or ESC key
   {
@@ -97,9 +92,21 @@ int main()
     //William
     t -= GetFrameTime();
 
+    //Task 10 Ryan
+    if (t <= 0 || (player_path.size() > 1 && tokens < 0))
+    {
+        if (score > high_score) 
+        {
+            high_score = score;
+        }
+        score = 0;
+        tokens = 2000;
+        t = 60;
+        player_path.clear();
+        player_path.push_back(start);
+    }
+
     ClearBackground(LIGHTGRAY);
-
-
 
     //Task 5 William
     if (player_path.size() >= 2)
@@ -120,53 +127,11 @@ int main()
     DrawText(TextFormat("Score: %04i", score), 100, 80, 20, WHITE); // Mary 
     DrawText(TextFormat("Tokens: %04i", tokens), 100, 120, 20, WHITE); // Mary
     DrawText(TextFormat("High Score: %04i", high_score), 100, 160, 20, WHITE); // Mary
-    DrawText(TextFormat("Timer(s): %02i", static_cast<int>(t)), 100, 200, 20, WHITE); //Mary and cast as int was Willam
+    DrawText(TextFormat("Timer(s): %02i", static_cast<int>(t)), 100, 200, 20, WHITE); //Mary and cast as int was William
 
     //Task 2 William
     DrawCircle(node_info[start].x, node_info[start].y, 12, GREEN); //William - Drawing green circle using start node position
     DrawCircle(node_info[end].x, node_info[end].y, 12, RED); //William - Drawing red circle using end node position
-
-
-    //Task 9 Mary
-    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
-    {
-        if (player_path.size() > 1)
-        {
-            PlayClickSound();
-
-            node_t lastNode = player_path.back();
-            node_t secondLastNode = player_path[player_path.size() - 2];
-
-            tokens += g.cost(secondLastNode, lastNode);
-            player_path.pop_back();
-        }
-    }
-
-
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-    {
-      if (auto opt = get_nearby_node(GetMousePosition()))
-      {
-        // *opt is a node_t
-         // Willam
-        auto nv = g.neighbors(player_path.back());
-
-          for (auto currNeighbour : nv)
-          {
-              if (currNeighbour == *opt)
-              {
-                  tokens -= g.cost(player_path.back(), *opt);
-                  player_path.push_back(*opt);
-                  //tokens -= path_cost(player_path); *maybe use it later -- final node
-                  
-                  //task 4 Mary
-                  PlayClickSound();
-
-                  break;
-              }
-          }
-      }
-    }
 
     EndDrawing();
   }
